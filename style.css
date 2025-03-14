@@ -1,110 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 body {
-    background: #030303;
-    color: white;
-    font-family: "Outfit";
-    margin: 0 0;
-    padding: 0 0;
+  background: #030303;
+  color: white;
+  font-family: "Outfit";
+  padding: 10px 100px;
 }
 .login {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
-.tocenter{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    gap: 24px;
-    max-width: max-content;
+.tocenter {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  gap: 24px;
+  max-width: max-content;
 }
 input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    background-color: #111;  
-    color: #fff; 
-    font-size: small;
-    outline: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #111;
+  color: #fff;
+  font-size: small;
+  outline: none;
 }
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    background-color: #111 !important;
-    color: #fff !important;
-    -webkit-text-fill-color: #fff !important;
-    -webkit-box-shadow: 0 0 0px 1000px #111 inset !important;
-    transition: background-color 5000s ease-in-out 0s;
+  background-color: #111 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  -webkit-box-shadow: 0 0 0px 1000px #111 inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 input:focus {
-    border: 2px solid  #0062FC;
+  border: 2px solid #0062fc;
 }
 input::placeholder {
-    color: #666; /* Slightly lighter placeholder */
+  color: #666; /* Slightly lighter placeholder */
 }
 button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: linear-gradient(to right, #005eff, #0039b5); /* Blue gradient */
-    color: white;
-    font-size: small;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(to right, #005eff, #0039b5); /* Blue gradient */
+  color: white;
+  font-size: small;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
-.profileCard{
-    display: flex;
-    max-width: 100%;
-    justify-content: space-between;
-    padding: 24px;
+.profileCard {
+    border-radius: 16px;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 98, 252, 0.12) 0%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .hello {
-    font-size:24px ;
-    font-weight: 700;
+  font-size: 24px;
+  font-weight: 700;
 }
 .welcoming {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 .mail {
-    font-size:18px ;
-    font-weight: 300;
+  font-size: 18px;
+  font-weight: 300;
 }
 .profileCard button {
-    padding: 10px;
-    width: max-content;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.061);
-    border: 1px solid rgba(255, 255, 255, 0.167);
+  padding: 10px;
+  width: max-content;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.061);
+  border: 1px solid rgba(255, 255, 255, 0.167);
 }
 button:hover {
-    background: linear-gradient(to right, #0048d9, #002b8a);
+  background: linear-gradient(to right, #0048d9, #002b8a);
 }
 .texts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: stretch;
 }
-.Bigtext{
-    font-size: xx-large;
-    font-weight: bold;
+.Bigtext {
+  font-size: xx-large;
+  font-weight: bold;
 }
 .smalltext {
-    font-size: medium;
-    font-weight: 300;
+  font-size: medium;
+  font-weight: 300;
 }
