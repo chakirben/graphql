@@ -6,6 +6,8 @@ export default function login() {
     let name = input("name", "name")
     let pass = input("password", "password")
     let errorPlace = div("errorPlace")
+    let logo = document.createElement("img")
+    logo.src = "./logo.png"
     let btn = button("login", async function () {
         if (!name.value.length || !pass.value.length) {
             console.log("skd");
@@ -27,5 +29,16 @@ export default function login() {
             console.log("not");
         }
     })
-    document.body.append(name, pass, errorPlace, btn)
+    let login  =  div("login").add(
+        div("tocenter").add(
+            div("texts" ,).add(
+                div("Bigtext" , "Login") , div("smalltext", "and let's see if you're a real talent")
+            ),
+            div("form").add(
+                name, pass , errorPlace , btn
+            ) , 
+            logo
+        )
+    )
+    document.body.append(login)
 }

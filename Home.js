@@ -1,3 +1,5 @@
+import div from "./utils/div.js"
+import button from "./utils/button.js"
 export default async function home () {
     let token =  localStorage.getItem("jwt")
     document.body.innerHTML = ""
@@ -10,13 +12,24 @@ export default async function home () {
             query: `
                 {
                     user {
-                        lastName
+                        lastName 
+                        email
                     }
                 }
             `})
     })
     let data =  await resp.json()
-    document.body.textContent =data.data.user[0].lastName
-    console.log( );
+    console.log(data);
     
+    const lastName=data.data.user[0].lastName
+    const mail=data.data.user[0].email
+    let profileCard=  div("profileCard").add(
+        div("welcoming").add(
+            div("hello","👋 Welcome," + lastName),
+            div("mail",mail)
+        ),
+        button("logout")
+    )
+    document.body.append(profileCard)
+
 }
