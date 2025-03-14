@@ -1,6 +1,9 @@
-export default async function home () {
-    let token =  localStorage.getItem("jwt")
-    document.body.innerHTML = ""
+export default async function checkAuth() {
+    let token = localStorage.getItem("jwt")
+    // check JWT existance
+    if (!token) {
+        return false
+    }
     let resp = await fetch("https://learn.zone01oujda.ma/api/graphql-engine/v1/graphql", {
         method: "POST",
         headers: {
@@ -15,8 +18,10 @@ export default async function home () {
                 }
             `})
     })
-    let data =  await resp.json()
-    document.body.textContent =data.data.user[0].lastName
-    console.log( );
-    
+    //  check JWT validity
+    let data = await resp.json()
+    if (data.errors) {
+        return false
+    }
+    return true
 }

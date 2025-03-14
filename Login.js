@@ -1,7 +1,7 @@
 import input from "./utils/input.js"
 import button from "./utils/button.js"
 import div from "./utils/div.js"
-import home from "./Home.js"
+import { routIt } from "./main.js"
 export default function login() {
     let name = input("name", "name")
     let pass = input("password", "password")
@@ -22,7 +22,7 @@ export default function login() {
         if (resp.ok) {
             let data = await resp.json()
             localStorage.setItem("jwt", data)
-            home()
+            routIt()
         } else {
             console.log("not");
         }
