@@ -3,6 +3,7 @@ import button from "./utils/button.js"
 import div from "./utils/div.js"
 import { routIt } from "./main.js"
 export default function login() {
+    document.body.innerHTML=""
     let name = input("name", "name")
     let pass = input("password", "password")
     let errorPlace = div("errorPlace")

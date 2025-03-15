@@ -4,6 +4,12 @@ body {
   color: white;
   font-family: "Outfit";
   padding: 10px 100px;
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+.Name {
+  font-weight: bold;
 }
 .login {
   display: flex;
@@ -60,7 +66,7 @@ button {
   transition: background 0.3s ease;
 }
 .profileCard {
-    border-radius: 16px;
+  border-radius: 16px;
   display: flex;
   max-width: 100%;
   align-items: center;
@@ -114,4 +120,21 @@ button:hover {
 .smalltext {
   font-size: medium;
   font-weight: 300;
+}
+.xpCard {
+  background: #0066ff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  max-width: max-content;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: start;
+}
+.ProjectWithxp {
+  display: flex;
+  width:  100%;
+  justify-content: space-between;
+  gap: 40px;
 }
