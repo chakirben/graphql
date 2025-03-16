@@ -8,6 +8,7 @@ export default async function home() {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
         },
         body: JSON.stringify({
             query: `
@@ -16,28 +17,41 @@ export default async function home() {
                         lastName 
                         email
                     }
-                     transaction_aggregate(where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }) {
+                    transaction_aggregate(where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }) {
                         aggregate {
                             sum {
                                 amount
                             }
                         }
                     }
-                    transaction(where : {type : {_eq : "xp"} , eventId : {_eq  :41}}, order_by : {createdAt : desc , } , limit:2) {
-                            path
-                            amount
+                    transaction(
+                        where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }, 
+                        order_by: { createdAt: desc }, 
+                        limit: 2
+                    ) {
+                        path
+                        amount
                     }
-                    audit (where : {auditorLogin :{_eq:"cbenlafk"} ,endAt : {_gt : ${Date.now().toString()}} , closureType : {_is_null :true}}){
-                            private {
-                            code
-                            }
-                            group {
-                            captainLogin
-                            }
+                    audit(
+                        where: { 
+                            auditorLogin: { _eq: "cbenlafk" }, 
+                            endAt: { _gt: "${new Date().toISOString()}" }, 
+                            closureType: { _is_null: true } 
                         }
+                    ) {
+                        private {
+                            code
+                        }
+                        group {
+                            captainLogin
+                            path
+                        }
+                    }
                 }
-            `})
-    })
+            `
+        })
+    });
+    
     let data = await resp.json()
     console.log(data);
     const lastName = data.data.user[0].lastName
@@ -67,7 +81,12 @@ export default async function home() {
             div("Name" , projectName2) ,  div("xp" ,  "+"+ projectAmount2)
         )
     )
-
+    let userLogin =  data.data.audit[0].group.captainLogin
+    let auditProject =  data.data.audit[0].group.path.split("/")
+    auditProject = auditProject[auditProject.length-1]
+    let auditCode = data.data.audit[0].private.code
+    console.log(userLogin, auditProject , auditCode);
+    
     document.body.append(profileCard , Xp)
 
 }
