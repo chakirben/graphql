@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let data = [100, 258 , 300]
+        let total = data.reduce((acc , val)=>{acc+=val ; return acc},0)
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("width", "100%");  
+        svg.setAttribute("height", "100%"); 
+        svg.style.display = "block"; 
+        svg.style.margin = "auto";
+        svg.style.backgroundColor = "lightblue";
+        
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("stroke", "black");
+        path.setAttribute("fill", "transparent");
+        path.setAttribute("stroke-width", "1X");
+
+        // Append the path to the SVG
+        svg.appendChild(path);
+        document.body.appendChild(svg);
+        let width = document.querySelector("svg").getBoundingClientRect().width
+        let height = document.querySelector("svg").getBoundingClientRect().height
+        svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+        let p = `M0 ${height}`
+        let xpas = width / data.length
+        let thePas =  xpas
+        data.forEach((value)=> {
+            console.log(value , xpas);
+            let ypos = height -  (value/total)*height
+            console.log(ypos);
+             p += ` L${thePas} ${ypos}` 
+             thePas+=xpas
+        })
+        console.log(p);
+        
+        path.setAttribute("d", p);
+    </script>
+
+</body>
+
+</html>

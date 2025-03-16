@@ -134,7 +134,69 @@ button:hover {
 }
 .ProjectWithxp {
   display: flex;
-  width:  100%;
+  width: 100%;
   justify-content: space-between;
   gap: 40px;
+}
+.auditCard {
+  background: #bdc9dc;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 24px;
+  max-width: max-content;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #030303;
+}
+.active {
+  color: #0066ff;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+.textsContainer {
+  display: flex;
+  gap: 40px;
+  color: #030303;
+}
+.left {
+  align-items: start;
+}
+.codeSection {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px 8px 12px;
+  gap: 16px;
+  background: #8b97aa;
+  border-radius: 12px;
+}
+.copyButton {
+  display: flex;
+  color: #030303;
+  gap: 8px;
+  padding: 6px 8px;
+  background-color: white;
+  border-radius: 8px;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.copyButton img {
+  width: 100%;
+  height: 100%;
+}
+.copyButton:hover {
+  background-color: rgba(255, 255, 255, 0.805);
+  cursor: pointer;
 }

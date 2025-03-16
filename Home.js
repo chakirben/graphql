@@ -1,6 +1,7 @@
 import div from "./utils/div.js"
 import button from "./utils/button.js"
 import logout from "./logout.js"
+import copyCode from "./copyCode.js"
 export default async function home() {
     let token = localStorage.getItem("jwt")
     document.body.innerHTML = ""
@@ -24,11 +25,10 @@ export default async function home() {
                             }
                         }
                     }
-                    transaction(
-                        where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }, 
-                        order_by: { createdAt: desc }, 
-                        limit: 2
-                    ) {
+                    transaction (where : {type : {_eq : "xp"} ,
+                        eventId : {_eq  :41}},
+                        order_by : {createdAt : asc}
+                        ){
                         path
                         amount
                     }
@@ -85,8 +85,46 @@ export default async function home() {
     let auditProject =  data.data.audit[0].group.path.split("/")
     auditProject = auditProject[auditProject.length-1]
     let auditCode = data.data.audit[0].private.code
+    let N = data.data.audit.length
     console.log(userLogin, auditProject , auditCode);
-    
-    document.body.append(profileCard , Xp)
+    let Active = !!data.data.audit.length
+    let activeAudits 
+    let copy = document.createElement("img")
+    copy.src = "./copy.svg"
+    if (Active) {
+        activeAudits = div("auditCard").add(
+            div("header").add(
+                div("title", "Audits"),
+                div("active", `${N} Active`)
+            ),
+            div("textsContainer").add(
+                div("texts left").add(
+                    div("xp", "Project"),
+                    div("name", auditProject),
+                ),
+                div("texts left").add(
+                    div("xp", "User"),
+                    div("name", userLogin)
+                )
+            ),
+            div("codeSection").add(
+                div("code", `${auditCode}`),
+                div("copyButton").add(
+                    copy, div("copy" , "copy")
+                )
+            )
+        );
+        
+    }
+    let graph =  document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    graph.setAttribute("stroke","white")
+    graph.setAttribute("fill" , "none")
+    let path  = document.createElement("path")
+    path.setAttribute("d" , "M0 0 L 5 5  L 5 0 L 20 5 L 22 200")
+    graph.append(path)
+    document.body.append(graph)
+    console.log(activeAudits);
+    document.body.append(profileCard , Xp , activeAudits)
+    document.querySelector(".copyButton").addEventListener("click" , ()=> {copyCode()})
 
 }
