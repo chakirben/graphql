@@ -231,3 +231,18 @@ circle:hover {
   left: 4%;
   top: 8%;
 }
+.audiRatioCard {
+  border: 1px solid white;
+  height: max-content;
+  width: 200px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 24px;
+}
+.graphTexts {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

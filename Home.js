@@ -3,6 +3,7 @@ import button from "./utils/button.js"
 import logout from "./logout.js"
 import copyCode from "./copyCode.js"
 import drawProgressGraph from "./progressGraph.js"
+import auditGraph from "./auditGraph.js"
 export default async function home() {
     let token = localStorage.getItem("jwt")
     document.body.innerHTML = ""
@@ -18,8 +19,23 @@ export default async function home() {
                     user {
                         lastName 
                         email
+                        auditRatio
                     }
-                    transaction_aggregate(where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }) {
+                    xpTransactions : transaction_aggregate(where: { type: { _eq: "xp" }, eventId: { _eq: 41 } }) {
+                        aggregate {
+                            sum {
+                                amount
+                            }
+                        }
+                    }
+                        upTransactions : transaction_aggregate(where: { type: { _eq: "up" }, eventId: { _eq: 41 } }) {
+                        aggregate {
+                            sum {
+                                amount
+                            }
+                        }
+                    }
+                        downTransactions : transaction_aggregate(where: { type: { _eq: "down" }, eventId: { _eq: 41 } }) {
                         aggregate {
                             sum {
                                 amount
@@ -52,7 +68,6 @@ export default async function home() {
             `
         })
     });
-    
     let data = await resp.json()
     console.log(data);
     const lastName = data.data.user[0].lastName
@@ -64,7 +79,7 @@ export default async function home() {
         ),
         button("logout", logout)
     )
-    let xpAmount = Math.round(data.data.transaction_aggregate.aggregate.sum.amount/1000)
+    let xpAmount = Math.round(data.data.xpTransactions.aggregate.sum.amount/1000)
     let projectName =  data.data.transaction[0].path.split("/")
     projectName = projectName[projectName.length-1]
     let projectName2 =  data.data.transaction[1].path.split("/")
@@ -82,17 +97,17 @@ export default async function home() {
             div("Name" , projectName2) ,  div("xp" ,  "+"+ projectAmount2)
         )
     )
-    let userLogin =  data.data.audit[0].group.captainLogin
-    let auditProject =  data.data.audit[0].group.path.split("/")
-    auditProject = auditProject[auditProject.length-1]
-    let auditCode = data.data.audit[0].private.code
-    let N = data.data.audit.length
-    console.log(userLogin, auditProject , auditCode);
     let Active = !!data.data.audit.length
-    let activeAudits 
-    let copy = document.createElement("img")
-    copy.src = "./copy.svg"
     if (Active) {
+        let userLogin =  data.data.audit[0].group.captainLogin
+        let auditProject =  data.data.audit[0].group.path.split("/")
+        auditProject = auditProject[auditProject.length-1]
+        let auditCode = data.data.audit[0].private.code
+        let N = data.data.audit.length
+        console.log(userLogin, auditProject , auditCode);
+        let activeAudits 
+        let copy = document.createElement("img")
+        copy.src = "./copy.svg"
         activeAudits = div("auditCard").add(
             div("header").add(
                 div("title", "Audits"),
@@ -117,16 +132,16 @@ export default async function home() {
         );
         
     }
-    let graph =  document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    graph.setAttribute("stroke","white")
-    graph.setAttribute("fill" , "none")
-    let path  = document.createElement("path")
-    path.setAttribute("d" , "M0 0 L 5 5  L 5 0 L 20 5 L 22 200")
-    graph.append(path)
-    document.body.append(graph)
-    console.log(activeAudits);
-    document.body.append(profileCard , Xp , activeAudits)
+    document.body.append(profileCard , Xp , Active?activeAudits : "")
     let d = data.data.transaction
-    document.querySelector(".copyButton").addEventListener("click" , ()=> {copyCode()})
+    if (Active){
+        document.querySelector(".copyButton").addEventListener("click" , ()=> {copyCode()})
+    }
     drawProgressGraph(d)
+    let done = Math.round(data.data.upTransactions.aggregate.sum.amount/1000) 
+    let received = Math.round(data.data.downTransactions.aggregate.sum.amount/1000)
+    let auditRatio =  Math.round(data.data.user[0].auditRatio*10)/10
+    console.log(auditRatio);
+    
+    auditGraph(auditRatio , done ,  received)
 }
