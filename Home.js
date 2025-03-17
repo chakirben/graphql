@@ -2,6 +2,7 @@ import div from "./utils/div.js"
 import button from "./utils/button.js"
 import logout from "./logout.js"
 import copyCode from "./copyCode.js"
+import drawProgressGraph from "./progressGraph.js"
 export default async function home() {
     let token = localStorage.getItem("jwt")
     document.body.innerHTML = ""
@@ -125,6 +126,7 @@ export default async function home() {
     document.body.append(graph)
     console.log(activeAudits);
     document.body.append(profileCard , Xp , activeAudits)
+    let d = data.data.transaction
     document.querySelector(".copyButton").addEventListener("click" , ()=> {copyCode()})
-
+    drawProgressGraph(d)
 }
