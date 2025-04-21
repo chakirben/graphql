@@ -1,5 +1,5 @@
-import createCircle from "./utils/circle.js";
-import div from "./utils/div.js";
+import createCircle from "../utils/circle.js";
+import div from "../utils/div.js";
 
 export default function drawProgressGraph(data) {
     let progressCard = div("progressCard").add(

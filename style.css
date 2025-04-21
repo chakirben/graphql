@@ -11,6 +11,11 @@ body {
 .Name {
   font-weight: bold;
 }
+.cardsContainer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 .login {
   display: flex;
   align-items: center;
@@ -125,8 +130,9 @@ button:hover {
   background: #0066ff;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 16px;
-  max-width: max-content;
+  flex-grow: 1;
   padding: 20px;
+  min-width:200px;
   display: flex;
   flex-direction: column;
   gap: 16px;

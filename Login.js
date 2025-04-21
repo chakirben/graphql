@@ -4,14 +4,13 @@ import div from "./utils/div.js"
 import { routIt } from "./main.js"
 export default function login() {
     document.body.innerHTML=""
+    let logo = document.createElement("img")
+    logo.src = "./images/logo.png"
     let name = input("name", "name")
     let pass = input("password", "password")
     let errorPlace = div("errorPlace")
-    let logo = document.createElement("img")
-    logo.src = "./logo.png"
     let btn = button("login", async function () {
         if (!name.value.length || !pass.value.length) {
-            console.log("skd");
             errorPlace.textContent = "please enter  both name and passwors"
         }
         let info = `${name.value}:${pass.value}`
@@ -27,7 +26,7 @@ export default function login() {
             localStorage.setItem("jwt", data)
             routIt()
         } else {
-            console.log("not");
+            console.log("didn't login");
         }
     })
     let login  =  div("login").add(

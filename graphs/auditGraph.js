@@ -1,5 +1,5 @@
-import div from "./utils/div.js";
-import rect from "./utils/rect.js";
+import div from "../utils/div.js";
+import rect from "../utils/rect.js";
 
 export default async function auditGraph(auditRatio , done , received) {
    
@@ -16,7 +16,7 @@ export default async function auditGraph(auditRatio , done , received) {
             )
         )
     )
-    document.body.append(auditRatioCard)
+    document.body.querySelector(".cardsContainer").append(auditRatioCard)
     let svg =  document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("height" , "40px")
     let total =  done+received
