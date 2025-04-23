@@ -1,6 +1,10 @@
+import copyCode from "../utils/copyCode.js"
 import div from "../utils/div.js"
 
-export default function CreateActiveAuditsCard(data) {
+export default function CreateActiveAuditsCard(data ,  active) {
+    if ( !active) {
+        return div("auditCard active" ,  "No active audits currently")
+    }
     let userLogin =data.audit[0].group.captainLogin
     let auditProject = data.audit[0].group.path.split("/")
     auditProject = auditProject[auditProject.length - 1]
@@ -9,7 +13,14 @@ export default function CreateActiveAuditsCard(data) {
     console.log(userLogin, auditProject, auditCode);
     let activeAudits
     let copy = document.createElement("img")
-    copy.src = "./copy.svg"
+    copy.src = "/images/copy.svg"
+    let bbttn = div("copyButton").add(
+        copy, div("copy", "copy")
+    )
+    bbttn.onclick =  ()=>{copyCode}
+    // if (Active) {
+    //     document.querySelector(".copyButton").addEventListener("click", () => { copyCode() })
+    // }
     return div("auditCard").add(
         div("header").add(
             div("title", "Audits"),
@@ -27,9 +38,7 @@ export default function CreateActiveAuditsCard(data) {
         ),
         div("codeSection").add(
             div("code", `${auditCode}`),
-            div("copyButton").add(
-                copy, div("copy", "copy")
-            )
+            bbttn
         )
     );
 }

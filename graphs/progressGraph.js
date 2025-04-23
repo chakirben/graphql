@@ -5,7 +5,8 @@ export default function drawProgressGraph(data) {
     let progressCard = div("progressCard").add(
         div("Progresstexts").add(
             div("Bigtext" , "Progress") , div("smalltext","Xp Made by each  Project")
-        )
+        ) , 
+        div("chart")
     )
     document.body.append(progressCard)
     let total = data.reduce((acc, val) => { acc += val.amount; return acc }, 0)
@@ -17,12 +18,12 @@ export default function drawProgressGraph(data) {
     svg.style.margin = "auto";
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("stroke", "white");
-    path.setAttribute("fill", "black");
+    path.setAttribute("fill", "none");
     path.setAttribute("stroke-width", "1");
 
     // Append the path to the SVG
     svg.appendChild(path);
-    document.querySelector(".progressCard").appendChild(svg);
+    document.querySelector(".chart").appendChild(svg);
     let width = document.querySelector("svg").getBoundingClientRect().width
     let height = document.querySelector("svg").getBoundingClientRect().height
     svg.setAttribute("viewBox", `0 0 ${width + 10} ${height + 4}`);
@@ -33,13 +34,13 @@ export default function drawProgressGraph(data) {
     let ypos
     let tooltip = div("tooltip");
     tooltip.style.position = "absolute";
-    tooltip.style.display = "none";  // Initially hidden
+    tooltip.style.display = "none";
     document.body.appendChild(tooltip);
     data.forEach((value) => {
         progress += value.amount
         ypos = height - (progress / total) * height
         coordinates += ` L${Xposition} ${ypos}`
-        let circle = createCircle(Xposition, ypos, 4, "#767778", "none", 2)
+        let circle = createCircle(Xposition, ypos, 2, "#767778", "none", 1)
         circle.addEventListener("mouseenter", (e) => {
             console.log(e.pageX);
             let path = value.path.split("/")

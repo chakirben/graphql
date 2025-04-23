@@ -13,23 +13,15 @@ export default async function home() {
     let profileCard = CreateProfileCard(data)
     let xp = CreateXpCard(data)
     let Active = !!data.audit.length
-    console.log(data);
-    let activeAudits
-    if (Active) {
-        
-        activeAudits = CreateActiveAuditsCard(data)
-    }
+    let activeAudits = CreateActiveAuditsCard(data, Active)
     document.body.append(profileCard)
     let d = data.transaction
-    if (Active) {
-        document.querySelector(".copyButton").addEventListener("click", () => { copyCode() })
-    }
-    let cardsContainer =  div("cardsContainer").add(xp , Active? activeAudits : "")
-    document.body.append(cardsContainer)
-    drawProgressGraph(d)
     let done = Math.round(data.upTransactions.aggregate.sum.amount / 1000)
     let received = Math.round(data.downTransactions.aggregate.sum.amount / 1000)
     let auditRatio = Math.round(data.user[0].auditRatio * 10) / 10
-    console.log(auditRatio);
+    let cardsContainer = div("cardsContainer")
+    document.body.append(cardsContainer)
     auditGraph(auditRatio, done, received)
+    cardsContainer.add(xp,  activeAudits )
+    drawProgressGraph(d)
 }

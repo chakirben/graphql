@@ -6,17 +6,17 @@ export default function CreateXpCard(data) {
         projectName = projectName[projectName.length-1]
         let projectName2 =  data.transaction[1].path.split("/")
         projectName2 = projectName2[projectName2.length-1]
-        let projectAmount = data.transaction[0].amount/1000
-        let projectAmount2 = data.transaction[1].amount/1000
+        let projectAmount = data.transaction[data.transaction.length-2].amount/1000
+        let projectAmount2 = data.transaction[data.transaction.length-1].amount/1000
         return div("xpCard").add(
             div("texts").add(
                 div("smalltext" , "xp amount") ,  div("Bigtext", xpAmount+"kb")
             ) , 
             div("ProjectWithxp").add(
-                div("Name" , projectName) ,  div("xp" , "+"+ projectAmount)
+                div("Name" , projectName) ,  div("xp" , "+"+ Math.round(projectAmount) +" kb")
             ),
             div("ProjectWithxp").add(
-                div("Name" , projectName2) ,  div("xp" ,  "+"+ projectAmount2)
+                div("Name" , projectName2) ,  div("xp" ,  "+"+ Math.round(projectAmount2) + " kb")
             )
         )
 }

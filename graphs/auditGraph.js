@@ -9,14 +9,16 @@ export default async function auditGraph(auditRatio , done , received) {
         div("Bigtext" , auditRatio)),
         div("graphTexts").add(
             div("texts").add(
-                div("xp" , "done" ) ,  div("name" ,  done)
+                div("xp" , "done" ) ,  div("name" ,  done+" kb")
             ),
             div("texts").add(
-                div("xp" , "received" ) ,  div("name" ,  received)
+                div("xp" , "received" ) ,  div("name" ,  received + " kb")
             )
         )
     )
     document.body.querySelector(".cardsContainer").append(auditRatioCard)
+    console.log(document.body.querySelector('.cardsContainer'));
+    
     let svg =  document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("height" , "40px")
     let total =  done+received

@@ -8,12 +8,24 @@ body {
   gap: 24px;
   flex-direction: column;
 }
+.chart {
+  width: 100%;
+  /* height: 200px; */
+  /* position: relative; */
+}
+@media screen and  (max-width : 500px) {
+  body {
+    padding: 10px 0;
+  }
+  
+}
 .Name {
   font-weight: bold;
 }
 .cardsContainer {
   display: flex;
-  gap: 8px;
+  gap: 24px;
+  max-width: 1000px;
   flex-wrap: wrap;
 }
 .login {
@@ -73,7 +85,7 @@ button {
 .profileCard {
   border-radius: 16px;
   display: flex;
-  max-width: 100%;
+  max-width:  920px;;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -106,6 +118,7 @@ button {
 }
 .profileCard button {
   padding: 10px;
+  
   width: max-content;
   height: 40px;
   background: rgba(255, 255, 255, 0.061);
@@ -158,7 +171,11 @@ button:hover {
   flex-direction: column;
   padding: 20px;
   gap: 24px;
-  max-width: max-content;
+  flex-grow: 1;
+}
+.auditCard.active {
+  align-items: center;
+  justify-content: center;
 }
 .header {
   display: flex;
@@ -217,20 +234,22 @@ button:hover {
   background: rgba(189, 201, 220, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 16px;
-  overflow: hidden;
   position: relative;
+  max-width: 1000px;
   min-height:150px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px 0px;
   justify-content: flex-end;
 }
 circle:hover {
   fill: #0066ff;
-  stroke-width: 2;
+  stroke-width: 1;
   stroke: white;
   cursor: pointer;
-  r : 6;
+  r : 2;
 }
 .tooltip {
   background: #1B1C1D;
@@ -240,12 +259,10 @@ circle:hover {
   padding: 6px 8px;
 }
 .Progresstexts {
-  position: absolute;
-  left: 4%;
-  top: 8%;
+  margin-left: 24px;
 }
 .audiRatioCard {
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.603);
   height: max-content;
   width: 200px;
   padding: 24px;
