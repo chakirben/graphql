@@ -26,6 +26,7 @@ export default function login() {
             localStorage.setItem("jwt", data)
             routIt()
         } else {
+            errorPlace.textContent = "Invalid Credentials"
             console.log("didn't login");
         }
     })

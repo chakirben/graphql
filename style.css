@@ -3,7 +3,8 @@ body {
   background: #030303;
   color: white;
   font-family: "Outfit";
-  padding: 10px 100px;
+  padding: 10px 200px;
+  align-items: center;
   display: flex;
   gap: 24px;
   flex-direction: column;
@@ -25,8 +26,13 @@ body {
 .cardsContainer {
   display: flex;
   gap: 24px;
+  min-width: 200px;
   max-width: 1000px;
+  align-self: stretch;
   flex-wrap: wrap;
+}
+.errorPlace {
+  color: red;
 }
 .login {
   display: flex;
@@ -85,7 +91,9 @@ button {
 .profileCard {
   border-radius: 16px;
   display: flex;
-  max-width:  920px;;
+  max-width:  920px;
+  align-self: stretch;
+  min-width: 200px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
@@ -234,15 +242,12 @@ button:hover {
   background: rgba(189, 201, 220, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 16px;
-  position: relative;
   max-width: 1000px;
-  min-height:150px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
+  align-self: stretch;
+  min-width: 200px;
+  flex-direction: column;  gap: 24px;
   padding: 24px 0px;
-  justify-content: flex-end;
 }
 circle:hover {
   fill: #0066ff;
