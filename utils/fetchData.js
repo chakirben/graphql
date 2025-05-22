@@ -41,7 +41,7 @@ export default async function fetchData() {
                             }
                         }
                         transaction (where : {type : {_eq : "xp"} ,
-                            eventId : {_eq  :41}},
+                            eventId : {_eq  :41} , path:{_niregex:"checkpoint"} },
                             order_by : {createdAt : asc}
                             ){
                             path

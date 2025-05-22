@@ -17,7 +17,7 @@ export default function CreateActiveAuditsCard(data ,  active) {
     let bbttn = div("copyButton").add(
         copy, div("copy", "copy")
     )
-    bbttn.onclick =  ()=>{copyCode}
+    bbttn.onclick =  ()=>{copyCode()}
     // if (Active) {
     //     document.querySelector(".copyButton").addEventListener("click", () => { copyCode() })
     // }
